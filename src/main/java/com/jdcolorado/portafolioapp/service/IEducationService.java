@@ -1,4 +1,4 @@
-package com.jdcolorado.portafolioapp.service.impl;
+package com.jdcolorado.portafolioapp.service;
 
 import com.jdcolorado.portafolioapp.model.Education;
 

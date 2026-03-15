@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de Habilidad</title>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form-style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div th:insert="~{fragment/nav-admin :: nav}" ></div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <section class="admin-section">
+            <div class="admin-actions">
+                <a th:href="@{/skills}">Volver a la lista de Habilidades</a>
+            </div>
+            <h2>Formulario de Habilidad</h2>
+
+            <form th:action="@{/skills/save}" th:object="${skillDto}" class="contact-form" method="post">
+                <input th:field="*{id}" type="hidden" />
+
+                <input th:field="*{name}" type="text" placeholder="Nombre de la habilidad" >
+                <div th:if="${#fields.hasErrors('name')}" class="error-message"></div>
+
+                <input th:field="*{levelPercentage}" type="number" placeholder="Porcentaje (0-100)"  min="0" max="100">
+                <div th:if="${#fields.hasErrors('levelPercentage')}" class="error-message"></div>
+
+                <input th:field="*{iconClass}" type="text" placeholder="Clase del ícono (ej. fas fa-code)" >
+                <div th:if="${#fields.hasErrors('iconClass')}" class="error-message"></div>
+
+                <input th:field="*{personalInfoId}" type="number" placeholder="ID Información Personal" >
+                <div th:if="${#fields.hasErrors('personalInfoId')}" class="error-message"></div>
+
+                <button type="submit" class="btn">Guardar Habilidad</button>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer  th:insert="fragment/footer :: footer"></footer >
+</body>
+</html>

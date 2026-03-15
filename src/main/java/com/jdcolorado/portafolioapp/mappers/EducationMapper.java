@@ -1,4 +1,4 @@
-package com.jdcolorado.portafolioapp.dto.Mappers;
+package com.jdcolorado.portafolioapp.mappers;
 
 import com.jdcolorado.portafolioapp.dto.EducationDto;
 import com.jdcolorado.portafolioapp.model.Education;

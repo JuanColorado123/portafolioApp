@@ -1,10 +1,16 @@
-<nav th:fragment="nav">
+<nav th:fragment="nav" class="" xmlns:sec="http://www.w3.org/1999/xhtml">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#projects">Project</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="/">Inicio</a></li>
+    <li><a th:href="@{/personal-info}">Información Personal</a></li>
+    <li><a th:href="@{/experiences}">Experiencia</a></li>
+    <li><a th:href="@{/education}">Educación</a></li>
+    <li><a th:href="@{/projects}">Proyectos</a></li>
+    <li><a th:href="@{/skills}">Habilidades</a></li>
+    <li sec:authorize="isAuthenticated()">
+      <form th:action="@{/logout}" method="post" style="display:inline">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button type="submit" class="logout-button">Cerrar Sesión</button>
+      </form>
+    </li>
   </ul>
 </nav>

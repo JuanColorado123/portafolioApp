@@ -1,14 +1,14 @@
 package com.jdcolorado.portafolioapp.repository;
 
-import com.jdcolorado.portafolioapp.model.Skill;
+import com.jdcolorado.portafolioapp.model.Education;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IEducationRepository {
-    Skill save(Skill skill);
-    List<Skill> findAll();
-    Optional<Skill> findById(Long id);
-    void delete(Long id);
-    List<Skill> findByPersonalId(Long personalInfoId);
+    Education save(Education Education);
+    List<Education> findAll();
+    Optional<Education> findById(Long id);
+    void deleteById(Long id);
+    List<Education> findByPersonalInfoId(Long personalInfoId);
 }

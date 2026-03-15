@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<section th:fragment="personalInfo">
+    <div class="hero-section" th:each="personalInfo : ${personalInfos}">
+
+        <h1>
+            Soy
+            <span th:text="${personalInfo.firstName + ' ' + personalInfo.lastName}"></span>
+            <br>
+            <span th:text="${personalInfo.title}"></span>
+        </h1>
+
+        <div class="profile-image-container">
+            <img th:src="${personalInfo.profileImageUrl}"
+                 alt="Foto de perfil"
+                 class="profile-picture">
+        </div>
+
+        <p th:text="${personalInfo.profileDescription}"></p>
+
+        <a href="#projects">
+            <button>MIS PROYECTOS</button>
+        </a>
+
+    </div>
+</section>

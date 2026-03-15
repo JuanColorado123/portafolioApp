@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<section id="about" th:fragment="about">
+  <h2>¿QUIÉN SOY?</h2>
+
+  <p th:text="${personalInfos.profileDescription}"></p>
+
+  <a href="#projects">
+    <button>VER MIS PROYECTOS</button>
+  </a>
+</section>

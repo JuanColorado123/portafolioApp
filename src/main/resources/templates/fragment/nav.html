@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<header th:fragment="header">
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/skills}">Skills</a></li>
-        <li><a href="@{/experience}">Experience</a></li>
-      </ul>
-    </nav>
-    <div class="hero-section">
-      <h1>I'm <span>Gabriel Chaldú</span> <br>Full Stack Developer</h1>
-      <div class="profile-image-container">
-        <img src="img/dev-gabriel.png" alt="Ferdous Ahmed Profile Picture" class="profile-picture">
-      </div>
-      <p>Brief introductory text or slogan.</p>
+<nav th:fragment="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <ul>
+    <li><a href="/">Inicio</a></li>
+    <li><a href="#skills">Habilidades</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#education">Educación</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#contact">Contacto</a></li>
+    <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Iniciar Sessión</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/personal-info}">Administrador</a></li>
 
-      <button>MY PROJECTS</button>
-    </div>
-  </div>
-</header>
-</body>
-</html>
+    <li sec:authorize="isAuthenticated()">
+      <form th:action="@{/logout}" method="post" style="display:inline">
+        <button type="submit" class="logout-button">Cerrar Sesión</button>
+      </form>
+    </li>
+  </ul>
+</nav>

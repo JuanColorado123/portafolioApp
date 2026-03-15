@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/style-form-project.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-$END$
+
+<header th:fragment="header">
+    <div class="container">
+        <div th:insert="~{fragment/nav :: nav}"></div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <section id="contact" class="error-page">
+            <h2>Lo sentimos Ha ocurido un error.</h2>
+            <p>No podemos procesar tu solicitud en este. Por favor, intente de nuevo mas tarde</p>
+            <a th:href="@{/projects}">Volver a proyectos</a>
+        </section>
+    </div>
+</main>
+
+
+<div th:insert="~{fragment/footer :: footer}"></div>
+
 </body>
+
 </html>

@@ -3,21 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario</title>
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form-style.css">
 </head>
 <body>
-    <h1>Formulario de Informacion Personal</h1>
 
-    <form th:action="@{/personal-info-save}" th:object="${personalInfo}" method="post">
-        <div>
-            <label >Nombre: </label>
-            <input type="text" name="" id="" th:field="*{firstName}">
+    <header th:fragment="header">
+        <div class="container">
+            <div th:insert="~{fragment/nav-admin :: nav}" ></div>
         </div>
-        <div>
-            <label >Email: </label>
-            <input type="text" name="" id="a" th:fiel="*{email}">
-        </div>
+    </header>
 
-        <button type="submit">Guardar</button>
-    </form>
+    <main>
+        <div class="container">
+
+            <section class="admin-section">
+                <div class="admin-actions">
+                    <a th:href="@{/projects}">Volver a la lista de Proyectos</a>
+                </div>
+                <h2 th:text="${projectDto.id == null ? 'Crear Nueva Proyecto' : 'Editar Proyecto'}">Formulario de Proyectos</h2>
+                <form th:action="@{/projects/save}" th:object="${projectDto}" method="post" enctype="multipart/form-data" class="contact-form">
+
+                    <input type="text" th:field="*{title}" placeholder="Titulo del proyecto">
+                    <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+
+                    <textarea th:field="*{description}" placeholder="Descripcion del proyecto"></textarea>
+                    <div class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+
+
+                    <input type="text" th:field="*{projectUrl}" placeholder="URL del proyecto">
+                    <div class="error-message" th:if="${#fields.hasErrors('projectUrl')}" th:errors="*{projectUrl}"></div>
+
+
+                        <label>Imagen del proyecto</label>
+
+                        <div class="file-upload-container">
+                            <label for="project-image" class="file-upload-label">
+                                <span class="file-select-button">Seleccionar imagen</span>
+                            </label>
+
+                            <input type="file"
+                                   id="project-image"
+                                   name="file"
+                                   class="file-upload-input"
+                                   accept="image/*">
+
+                            <small style="color: var(--color-primary-sky); display: block; margin-top: 0.5rem; font-size: 1.2rem;">
+                                Formatos permitidos: JPG, PNG, GIF (máx. 5MB)
+                            </small>
+                        </div>
+
+                        <div class="error-message"
+                             th:if="${#fields.hasErrors('imageUrl')}"
+                             th:errors="*{imageUrl}"></div>
+
+
+                    <input type="text" th:field="*{personalInfoId}" placeholder="ID de informacion personal">
+                    <div class="error-message" th:if="${#fields.hasErrors('personalInfoId')}" th:errors="*{personalInfoId}"></div>
+
+                    <button type="submit">Guardar</button>
+
+                </form>
+            </section>
+        </div>
+    </main>
+
+
+    <div th:insert="fragment/footer :: footer"></div>
+
 </body>
+
 </html>

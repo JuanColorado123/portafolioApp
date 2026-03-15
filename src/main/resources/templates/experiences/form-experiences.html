@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario de Experiencia</title>
+  <link rel="stylesheet" href="/css/general.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/form-style.css">
 </head>
 <body>
-$END$
+
+<header>
+  <div class="container">
+    <div th:insert="~{fragment/nav-admin :: nav}" ></div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="admin-section">
+      <div class="admin-actions">
+        <a th:href="@{/experiences}">Volver a la lista de Experiencia</a>
+      </div>
+      <h2>Formulario de Experiencia</h2>
+
+      <form th:action="@{/experiences/save}" th:object="${experienceDto}" class="contact-form" method="post">
+        <input th:field="*{id}" type="hidden" />
+
+
+        <input th:field="*{jobTitle}" type="text" placeholder="Cargo o puesto de trabajo">
+        <div th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}" class="error-message"></div>
+
+        <input th:field="*{companyName}" type="text" placeholder="Nombre de la empresa">
+        <div th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}" class="error-message"></div>
+
+        <input th:field="*{startDate}" type="date" placeholder="Fecha de inicio">
+        <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="error-message"></div>
+
+        <input th:field="*{endDate}" type="date" placeholder="Fecha de finalización">
+        <div th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="error-message"></div>
+
+        <textarea th:field="*{description}" placeholder="Descripción de la experiencia laboral"></textarea>
+        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error-message"></div>
+
+        <input th:field="*{personalInfoId}" type="number" placeholder="ID de información personal">
+        <div th:if="${#fields.hasErrors('personalInfoId')}" th:errors="*{personalInfoId}" class="error-message"></div>
+
+
+
+        <button type="submit" class="btn">Guardar Experiencia</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer  th:insert="fragment/footer :: footer"></footer >
 </body>
 </html>

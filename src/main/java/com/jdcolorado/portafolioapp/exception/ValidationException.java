@@ -1,7 +1,14 @@
 package com.jdcolorado.portafolioapp.exception;
 
+import lombok.Getter;
+import org.springframework.validation.BindingResult;
+
+@Getter
 public class ValidationException extends RuntimeException {
-    public ValidationException(String message) {
-        super(message);
+    private final BindingResult bindingResult;
+
+    public ValidationException(BindingResult bindingResult) {
+        super("Error de validacion: Se encontraron " + bindingResult.getErrorCount());
+        this.bindingResult = bindingResult;
     }
 }

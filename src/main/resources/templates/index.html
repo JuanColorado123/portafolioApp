@@ -1,10 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/style-form-project.css">
 </head>
 <body>
-$END$
+<header th:fragment="header" class="line-white">
+    <div class="container">
+        <div th:replace="~{fragment/nav :: nav}"></div>
+        <div th:insert="~{fragment/sections/personal-info-section :: personalInfo}"></div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div th:insert="~{fragment/sections/about-section :: about}" class="line-white"></div>
+        <div th:insert="~{fragment/sections/education-section :: education}" class="line-white"></div>
+        <div th:insert="~{fragment/sections/skill-section :: skills}" class="line-white"></div>
+        <div th:insert="~{fragment/sections/experience-section :: experience}" class="line-white"></div>
+        <div th:insert="~{fragment/sections/paroject-section :: project}" class="line-white"></div>
+        <div th:insert="~{fragment/sections/contact-form :: contact}"></div>
+    </div>
+</main>
+
+<div th:insert="~{fragment/footer :: footer}"></div>
+
+<!-- Script al final del body -->
+<script>
+    // Función para inicializar el menú
+    function initMobileMenu() {
+        // Solo ejecutar en móvil
+        if (window.innerWidth > 768) return;
+
+        const header = document.querySelector('header');
+        const nav = document.querySelector('header nav');
+
+        if (!header || !nav) {
+            // Si no encuentra los elementos, intenta de nuevo en 100ms
+            setTimeout(initMobileMenu, 100);
+            return;
+        }
+
+        const navList = nav.querySelector('ul');
+        if (!navList) return;
+
+        // Verificar si ya existe el menú toggle
+        if (document.querySelector('.menu-toggle')) return;
+
+        // Crear elementos del menú
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<span></span><span></span><span></span>';
+        menuToggle.setAttribute('aria-label', 'Menú de navegación');
+
+        const overlay = document.createElement('div');
+        overlay.className = 'menu-overlay';
+
+        header.appendChild(menuToggle);
+        header.appendChild(overlay);
+
+        // Añadir índices para animación
+        navList.querySelectorAll('li').forEach((li, index) => {
+            li.style.setProperty('--item-index', index);
+        });
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navList.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navList.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMenu() {
+            if (navList.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navList.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        // Manejar clicks en los enlaces
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+
+                    if (targetElement) {
+                        closeMenu();
+
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 200);
+                    }
+                } else {
+                    closeMenu(); // Para href="/" y otros enlaces
+                }
+            });
+        });
+
+        // Cerrar al hacer scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (navList.classList.contains('active')) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(closeMenu, 500);
+            }
+        });
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Cerrar al redimensionar a desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navList.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+
+    // Iniciar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        // Si ya está cargado, iniciar inmediatamente
+        initMobileMenu();
+    }
+</script>
 </body>
 </html>

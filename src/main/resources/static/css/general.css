@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
+
+:root {
+    --color-primary-gold: #FBBF24;    /* Dorado ámbar (más cálido y legible) */
+    --color-secondary-green: #2D3748; /* Gris azulado oscuro (para fondos secundarios) */
+    --color-primary-sky: #60A5FA;     /* Azul cielo vibrante */
+    --color-blue: #2563EB;            /* Azul intenso (botones principales) */
+    --color-dark: #0F172A;            /* Fondo principal (azul muy oscuro) */
+    --color-white: #F9FAFB;           /* Blanco ligeramente roto */
+
+    /* Variables adicionales para mejorar consistencia (opcionales, pero recomendadas) */
+    --color-surface: #1E293B;          /* Fondo de tarjetas, inputs, tablas */
+    --color-error: #EF4444;            /* Rojo para errores */
+    --color-success: #10B981;          /* Verde para éxito (si lo usas) */
+    --border-radius: 0.5rem;
+    --transition: 0.2s ease-in-out;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: var(--color-dark);
+    color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    line-height: 1.6;
+    font-size: 1.6rem; /* Base 16px */
+}
+
+header {
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 4rem 0 6rem;
+    text-align: center;
+    border-bottom: 1px solid var(--color-secondary-green);
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;  /* Limitar ancho para mejor legibilidad */
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+footer {
+    background: var(--color-dark);
+    color: var(--color-white);
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1.4rem;
+    border-top: 1px solid var(--color-secondary-green);
+}
+
+footer a {
+    color: var(--color-primary-gold);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+footer a:hover {
+    color: var(--color-primary-sky);
+    text-decoration: underline;
+}

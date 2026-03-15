@@ -1,0 +1,16 @@
+<section id="projects" th:fragment="project">
+    <h2>MY PROJECTS</h2>
+    <div class="projects-grid">
+        <div class="project-card" th:each="project : ${projects}">
+
+            <img th:src="${project.imageUrl}" width="150" height="150" alt="Imagen del proyecto">
+
+            <h3 th:text="${project.title}"></h3>
+
+            <p th:text="${project.description}"></p>
+
+            <a th:href="${project.projectUrl}">View Project</a>
+
+        </div>
+    </div>
+</section>

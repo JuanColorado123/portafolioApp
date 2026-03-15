@@ -1,0 +1,750 @@
+/* ===== ESTILOS GENERALES ===== */
+:root {
+    --color-primary-gold: #FBBF24;
+    --color-secondary-green: #2D3748;
+    --color-primary-sky: #60A5FA;
+    --color-blue: #2563EB;
+    --color-dark: #0F172A;
+    --color-white: #F9FAFB;
+    --color-surface: #1E293B;
+    --color-error: #EF4444;
+    --color-success: #10B981;
+    --border-radius: 0.5rem;
+    --transition: 0.2s ease-in-out;
+}
+
+/* ===== HEADER MEJORADO ===== */
+header {
+    background:
+            radial-gradient(circle at 30% 50%,
+            var(--color-primary-gold) -10%,
+            var(--color-blue) 50%,
+            var(--color-dark) 100%);
+    color: var(--color-white);
+    padding: 4rem 0 6rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--color-primary-sky);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.2) 0%, rgba(251, 191, 36, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Imagen de perfil */
+.profile-image-container {
+    width: 16rem;
+    height: 16rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 2rem;
+    border: 4px solid var(--color-white);
+    box-shadow: 0 0 0 4px var(--color-primary-gold), 0 15px 25px -8px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition);
+}
+
+.profile-image-container:hover {
+    transform: scale(1.02);
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+header h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+}
+
+/* Navegación */
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilo base para todos los elementos del nav - UNIFICADO */
+header nav ul li a,
+.logout-button {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    margin: 0;
+    width: auto;
+    box-sizing: border-box;
+    height: 100%;
+    white-space: nowrap;
+}
+
+/* HOVER PARA INICIO DE SESIÓN - Verde */
+header nav ul li a[href*="login"]:hover {
+    background-color: #10b981 !important;  /* Verde esmeralda */
+    color: white !important;
+    border-color: #10b981 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+/* HOVER PARA ADMINISTRADOR - Azul */
+header nav ul li a[href*="personal-info"]:hover {
+    background-color: rgba(255, 145, 0, 0.84) !important;  /* Azul brillante */
+    color: white !important;
+    border-color: rgba(255, 136, 0, 0.89) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* HOVER PARA CERRAR SESIÓN - Rojo (ya existente) */
+.logout-button:hover {
+    background-color: #dc2626 !important;
+    color: white !important;
+    border-color: #dc2626 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+/* Hover para enlaces normales (Inicio, Habilidades, etc.) - Dorado */
+header nav ul li a:hover:not([href*="login"]):not([href*="personal-info"]) {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    border-color: var(--color-primary-gold);
+    transform: translateY(-2px);
+}
+
+/* Para móvil */
+@media (max-width: 768px) {
+    header nav ul li a,
+    .logout-button {
+        width: 100%;
+        text-align: left;
+        padding: 1.5rem 2rem;
+        font-size: 1.8rem;
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+        justify-content: flex-start;
+        height: auto;
+        transform: none !important;
+    }
+
+    /* Mantener colores en móvil pero sin transform */
+    header nav ul li a[href*="login"]:hover {
+        background-color: #10b981 !important;
+        transform: none !important;
+    }
+
+    header nav ul li a[href*="personal-info"]:hover {
+        background-color: #3b82f6 !important;
+        transform: none !important;
+    }
+
+    .logout-button:hover {
+        background-color: #dc2626 !important;
+        transform: none !important;
+    }
+
+    header nav ul li a:hover:not([href*="login"]):not([href*="personal-info"]) {
+        background-color: var(--color-primary-gold);
+        color: var(--color-dark);
+        transform: none !important;
+    }
+
+    .logout-form {
+        width: 100%;
+    }
+}
+
+header nav ul li a:hover {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    border-color: var(--color-primary-gold);
+    transform: translateY(-2px);
+}
+
+/* Botón del header */
+.hero-section button {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    padding: 1.2rem 2.8rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: all var(--transition);
+    box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section button:hover {
+    background-color: var(--color-dark);
+    color: var(--color-primary-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section span {
+    color: var(--color-primary-gold);
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* ===== MAIN CONTAINER ===== */
+main .container {
+    background-color: var(--color-dark);
+    padding: 4rem 2rem;
+    width: 100%;
+}
+
+/* ===== SECCIÓN ABOUT ===== */
+#about {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+#about h2, #skills h2, #projects h2, #contact h2,
+#education h2, #experience h2 {
+    color: var(--color-primary-gold);
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+#about h2::after, #skills h2::after, #projects h2::after,
+#contact h2::after, #education h2::after, #experience h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary-sky);
+    border-radius: 2px;
+}
+
+#about p {
+    color: var(--color-white);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+#about button {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: all var(--transition);
+    box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
+}
+
+#about button:hover {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* ===== TIMELINE (EDUCACIÓN Y EXPERIENCIA) ===== */
+#education, #experience {
+    padding: 4rem 0;
+}
+
+.education-timeline,
+.experience-timeline {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.timeline-item {
+    background-color: var(--color-surface);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--color-primary-gold);
+    transition: transform var(--transition);
+}
+
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+.timeline-item h3 {
+    color: var(--color-primary-gold);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.timeline-item p {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.timeline-item .timeline-date {
+    font-style: italic;
+    color: var(--color-primary-sky);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+/* ===== SKILLS GRID ===== */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem;
+    justify-items: center;
+    padding: 2rem 0;
+}
+
+.skill-card {
+    background-color: var(--color-surface);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: all var(--transition);
+    width: 100%;
+    max-width: 220px;
+    border: 1px solid var(--color-secondary-green);
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary-gold);
+    box-shadow: 0 15px 30px -8px rgba(251, 191, 36, 0.2);
+}
+
+.skill-card img {
+    max-width: 8rem;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: brightness(0.95);
+}
+
+.skill-card h3 {
+    font-size: 1.6rem;
+    color: var(--color-primary-gold);
+    margin: 0;
+}
+
+/* ===== PROJECTS GRID ===== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 2rem 0;
+}
+
+.project-card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-secondary-green);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-primary-gold);
+    box-shadow: 0 20px 30px -10px rgba(251, 191, 36, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 22rem;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.project-card:hover img {
+    transform: scale(1.05);
+}
+
+.project-card h3 {
+    padding: 2rem 2rem 1rem;
+    font-size: 1.8rem;
+    color: var(--color-primary-gold);
+    margin: 0;
+}
+
+.project-card p {
+    padding: 0 2rem 1.5rem;
+    font-size: 1.4rem;
+    color: var(--color-white);
+    opacity: 0.9;
+    flex-grow: 1;
+}
+
+.project-card a {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 1.2rem 2rem;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all var(--transition);
+    margin-top: auto;
+}
+
+.project-card a:hover {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+}
+
+/* ===== FORMULARIO DE CONTACTO ===== */
+.contact-form {
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: var(--color-surface);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 1.4rem;
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-secondary-green);
+    border-radius: var(--border-radius);
+    color: var(--color-white);
+    font-size: 1.5rem;
+    transition: all var(--transition);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-sky);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form button[type="submit"] {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    padding: 1.4rem 2.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: all var(--transition);
+    box-shadow: 0 8px 15px -5px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    transform: translateY(-3px);
+}
+
+/* ===== ERROR PAGE ===== */
+.error-page {
+    background-color: var(--color-surface);
+    padding: 4rem;
+    margin: 3rem auto;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    color: var(--color-white);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.error-page h2 {
+    color: var(--color-primary-gold);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+}
+
+.error-page p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+.error-page a {
+    display: inline-block;
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all var(--transition);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.error-page a:hover {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* ===== MENSAJES ===== */
+.message-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1.4rem;
+}
+
+.message-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1.4rem;
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 1.3rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* ===== BOTONES DE ACCIÓN (EDITAR/ELIMINAR) ===== */
+.btn-edit {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    margin: 0.3rem;
+    background-color: var(--color-success);
+    color: var(--color-white);
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.btn-edit:hover {
+    background-color: #0d9488;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px -3px rgba(16, 185, 129, 0.3);
+}
+
+.btn-delete {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    margin: 0.3rem;
+    background-color: var(--color-error);
+    color: var(--color-white);
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px -3px rgba(239, 68, 68, 0.3);
+}
+
+/* ===== LÍNEA DIVISORIA ===== */
+.line-white {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--color-secondary-green);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    text-align: center;
+    padding: 3rem 0;
+    font-size: 1.5rem;
+    border-top: 1px solid var(--color-secondary-green);
+}
+
+footer a {
+    color: var(--color-primary-gold);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+footer a:hover {
+    color: var(--color-primary-sky);
+    text-decoration: underline;
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li{
+        margin: 10px 0;
+    }
+
+}
+
+/* Login Page */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(
+            135deg,
+            var(--color-blue),
+            var(--color-dark)
+    );
+    padding: 2rem;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 3rem 4rem;
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    max-width: 40rem;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 2rem;
+    color: var(--color-blue);
+    font-size: 2.2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: bold;
+    color: var(--color-dark);
+}
+
+.login-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    font-size: 1rem;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--color-primary-gold);
+    box-shadow: 0 0 0 2px rgba(230, 242, 136, 0.5);
+}
+
+.login-form button {
+    background-color: var(--color-primary-gold);
+    color: var(--color-dark);
+    padding: 1rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: var(--color-dark);
+    color: var(--color-primary-gold);
+}

@@ -1,6 +1,7 @@
-package com.jdcolorado.portafolioapp.repository;
+package com.jdcolorado.portafolioapp.repository.impl;
 
 import com.jdcolorado.portafolioapp.model.PersonalInfo;
+import com.jdcolorado.portafolioapp.repository.IPersonalInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class PersonalInfoRepositoryImpl implements IPersonalInfoRepository{
+public class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
 
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<PersonalInfo> rowMapper = (rs,numRow) -> {

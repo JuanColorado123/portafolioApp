@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="/css/general.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
+  <link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
-$END$
+
+<header>
+  <div class="container">
+    <div th:insert="~{fragment/nav-admin :: nav}" ></div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="admin-section">
+      <div class="admin-actions">
+        <a th:href="@{/experiences/new}">Crear Experiencia</a>
+      </div>
+      <h2>Lista de Experiencia</h2>
+
+      <div th:if="${message}"   class="message-success">
+        <p th:text="${message}"></p>
+      </div>
+      <div th:if="${error}" class="message-error">
+        <p th:text="${error}"></p>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+        <tr>
+          <th>id</th>
+          <th>cargo</th>
+          <th>nombre de la empresa</th>
+          <th>fecha de inicio</th>
+          <th>fecha de fin</th>
+          <th>descripción</th>
+          <th>id de información personal</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="experience : ${experiences}">
+          <td th:text="${experience.id}"></td>
+          <td th:text="${experience.jobTitle}"></td>
+          <td th:text="${experience.companyName}"></td>
+          <td th:text="${experience.startDate}"></td>
+          <td th:text="${experience.endDate}"></td>
+          <td th:text="${experience.description}"></td>
+          <td th:text="${experience.personalInfoId}"></td>
+          <td>
+            <a th:href="@{/experiences/edit/{id}(id=${experience.id})}" class="btn-edit">Editar</a>
+            <form th:action="@{/experiences/delete/{id}(id=${experience.id})}" method="post" style="display:inline;">
+              <button type="submit" class="btn-delete" onclick="return confirm('¿Estás seguro de que quieres eliminar esta experience?');">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <p th:if="${experiences.isEmpty()}" class="no-data-message">No hay experience registradas.</p>
+    </section>
+  </div>
+</main>
+<div th:insert="fragment/footer :: footer"></div>
 </body>
 </html>
