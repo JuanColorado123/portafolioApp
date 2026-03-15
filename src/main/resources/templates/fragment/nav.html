@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="@{/}">Home</a></li>
+        <li><a href="@{/skills}">Skills</a></li>
+        <li><a href="@{/experience}">Experience</a></li>
+      </ul>
+    </nav>
+    <div class="hero-section">
+      <h1>I'm <span>Gabriel Chaldú</span> <br>Full Stack Developer</h1>
+      <div class="profile-image-container">
+        <img src="img/dev-gabriel.png" alt="Ferdous Ahmed Profile Picture" class="profile-picture">
+      </div>
+      <p>Brief introductory text or slogan.</p>
+
+      <button>MY PROJECTS</button>
+    </div>
+  </div>
+</header>
+</body>
+</html>

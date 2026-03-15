@@ -1,0 +1,37 @@
+package com.jdcolorado.portafolioapp.dto.Mappers;
+
+import com.jdcolorado.portafolioapp.dto.ExperienceDto;
+import com.jdcolorado.portafolioapp.model.Experience;
+
+public class ExperienceMapper {
+
+    public static ExperienceDto toDto(Experience experience){
+
+        ExperienceDto experienceDto = new ExperienceDto();
+
+        experienceDto.setId(experience.getId());
+        experienceDto.setJobTitle(experience.getJobTitle());
+        experienceDto.setCompanyName(experience.getCompanyName());
+        experienceDto.setStartDate(experience.getStartDate());
+        experienceDto.setEndDate(experience.getEndDate());
+        experienceDto.setDescription(experience.getDescription());
+        experienceDto.setPersonalInfoId(experience.getPersonalInfoId());
+
+        return experienceDto;
+    }
+
+    public static Experience toEntity(ExperienceDto experienceDto){
+
+        Experience experience = new Experience();
+
+        experience.setId(experienceDto.getId());
+        experience.setJobTitle(experienceDto.getJobTitle());
+        experience.setCompanyName(experienceDto.getCompanyName());
+        experience.setStartDate(experienceDto.getStartDate());
+        experience.setEndDate(experienceDto.getEndDate());
+        experience.setDescription(experienceDto.getDescription());
+        experience.setPersonalInfoId(experienceDto.getPersonalInfoId());
+
+        return experience;
+    }
+}

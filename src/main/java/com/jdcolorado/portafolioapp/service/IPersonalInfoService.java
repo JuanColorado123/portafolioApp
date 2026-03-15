@@ -1,0 +1,14 @@
+package com.jdcolorado.portafolioapp.service;
+
+import com.jdcolorado.portafolioapp.model.PersonalInfo;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface IPersonalInfoService {
+    PersonalInfo save(PersonalInfo personalInfo);
+    Optional<PersonalInfo> findById(Long id);
+    List<PersonalInfo> findAll();
+    void deleteById(Long id);
+}
